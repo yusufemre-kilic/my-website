@@ -1,0 +1,125 @@
+/* Genel Stiller */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Navbar Stilleri */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+/* Header Stilleri */
+header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    padding: 80px 0;
+}
+
+header .display-4 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+header .lead {
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+/* Card Stilleri */
+.card {
+    border: none;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: #007bff;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.card-title i {
+    margin-right: 10px;
+}
+
+/* Form Stilleri */
+.form-control {
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+
+/* Buton Stilleri */
+.btn-primary {
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Sosyal Medya Linkleri */
+.social-links a {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #007bff !important;
+}
+
+/* Footer Stilleri */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 2rem 0;
+}
+
+/* Responsive Ayarlar */
+@media (max-width: 768px) {
+    header {
+        padding: 60px 0;
+    }
+    
+    header .display-4 {
+        font-size: 2rem;
+    }
+    
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.8s ease-out;
+}
