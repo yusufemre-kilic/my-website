@@ -124,16 +124,7 @@ footer {
     animation: fadeIn 0.8s ease-out;
 }
 
-/* Logo Stili */
-.logo {
-    max-height: 100px; /* Logo yüksekliğini buradan ayarlayabilirsiniz */
-    width: auto;
-    object-fit: contain;
-}
-
-/* Navbar Logo Stili */
-.navbar-logo {
-    height: 40px;
-    width: auto;
-    margin-right: 10px;
+/* Logo ile ilgili stilleri kaldır */
+.logo, .navbar-logo {
+    display: none;
 }
