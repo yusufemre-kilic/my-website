@@ -53,11 +53,31 @@
             <div class="col-md-4" id="projeler">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h2 class="card-title"><i class="fas fa-project-diagram mb-3"></i> Projelerim</h2>
-                        <div class="project-item">
-                            <h5>Proje 1</h5>
-                            <p>Proje açıklaması</p>
-                            <a href="#" class="btn btn-primary btn-sm">Detaylar</a>
+                        <h2 class="card-title"><i class="fas fa-project-diagram mb-3"></i> Portföy</h2>
+                        <div class="portfolio-item mb-4">
+                            <h5>Web Sitesi Projesi</h5>
+                            <p>Kişisel web sitesi tasarımı ve geliştirmesi</p>
+                            <div class="tech-stack mb-2">
+                                <span class="badge badge-primary">HTML</span>
+                                <span class="badge badge-primary">CSS</span>
+                                <span class="badge badge-primary">JavaScript</span>
+                                <span class="badge badge-primary">Bootstrap</span>
+                            </div>
+                            <a href="https://github.com/yusufemre-kilic/my-website" class="btn btn-primary btn-sm">
+                                <i class="fab fa-github mr-1"></i>GitHub
+                            </a>
+                        </div>
+                        
+                        <div class="portfolio-item">
+                            <h5>Verilog</h5>
+                            <p>sıcaklık sensörü, sıcaklık ve nem okuyucu,oled ekrana yazdırma</p>
+                            <div class="tech-stack mb-2">
+                                <span class="badge badge-primary">c++</span>
+                                <span class="badge badge-primary">verilog</span>
+                            </div>
+                            <a href="https://github.com/yusufemre-kilic/SicaklikOlcer" class="btn btn-primary btn-sm">
+                                <i class="fab fa-github mr-1"></i>GitHub
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -66,17 +86,19 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h2 class="card-title"><i class="fas fa-envelope mb-3"></i> İletişim</h2>
-                        <form>
+                        <form id="contactForm" action="https://formspree.io/f/FORM_ID" method="POST">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Adınız">
+                                <input type="text" name="name" class="form-control" placeholder="Adınız" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="E-posta">
+                                <input type="email" name="email" class="form-control" placeholder="E-posta" required>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" rows="3" placeholder="Mesajınız"></textarea>
+                                <textarea name="message" class="form-control" rows="3" placeholder="Mesajınız" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Gönder</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane mr-2"></i>Gönder
+                            </button>
                         </form>
                     </div>
                 </div>
