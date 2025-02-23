@@ -1,28 +1,31 @@
-// JavaScript kodlarınızı buraya ekleyebilirsiniz.
 console.log("Web sitem aktif!");
 
 // Form doğrulama ve gönderme işlemleri
 document.addEventListener('DOMContentLoaded', function() {
-    // Form elementi
-    const contactForm = document.querySelector('#iletisim form');
+    const contactForm = document.querySelector('#contactForm');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Form verilerini al
-            const formData = {
-                name: contactForm.querySelector('input[type="text"]').value,
-                email: contactForm.querySelector('input[type="email"]').value,
-                message: contactForm.querySelector('textarea').value
-            };
-            
             // Form doğrulama
-            if (validateForm(formData)) {
-                // Form başarılı mesajı göster
-                showNotification('Mesajınız başarıyla gönderildi!', 'success');
-                contactForm.reset();
+            const name = this.querySelector('input[name="name"]').value;
+            const email = this.querySelector('input[name="email"]').value;
+            const message = this.querySelector('textarea[name="message"]').value;
+            
+            if (!name || !email || !message) {
+                e.preventDefault();
+                showNotification('Lütfen tüm alanları doldurun', 'error');
+                return;
             }
+            
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                e.preventDefault();
+                showNotification('Geçerli bir email adresi giriniz', 'error');
+                return;
+            }
+            
+            showNotification('Mesajınız gönderiliyor...', 'success');
         });
     }
     
@@ -45,29 +48,73 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Sayfa yüklendiğinde animasyon
     animateOnScroll();
+
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        let bounds;
+        
+        function rotateToMouse(e) {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const leftX = mouseX - bounds.x;
+            const topY = mouseY - bounds.y;
+            const center = {
+                x: leftX - bounds.width / 2,
+                y: topY - bounds.height / 2
+            }
+            const distance = Math.sqrt(center.x**2 + center.y**2);
+            
+            card.style.transform = `
+                scale3d(0.98, 0.98, 0.98)
+                rotate3d(
+                    ${center.y / 100},
+                    ${-center.x / 100},
+                    0,
+                    ${Math.log(distance) * 2}deg
+                )
+                translate3d(0, 0, -${Math.log(distance)}px)
+            `;
+            
+            card.style.boxShadow = `
+                ${-center.x / 5}px 
+                ${-center.y / 5}px 
+                30px rgba(0,0,0,0.15),
+                ${center.x / 3}px 
+                ${center.y / 3}px 
+                20px rgba(0,0,0,0.1) inset
+            `;
+        }
+        
+        card.addEventListener('mouseenter', () => {
+            bounds = card.getBoundingClientRect();
+            document.addEventListener('mousemove', rotateToMouse);
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            document.removeEventListener('mousemove', rotateToMouse);
+            card.style.transform = '';
+            card.style.boxShadow = '';
+        });
+    });
 });
 
-// Form doğrulama fonksiyonu
 function validateForm(data) {
     const errors = [];
     
-    // İsim kontrolü
     if (!data.name.trim()) {
         errors.push('İsim alanı boş bırakılamaz');
     }
     
-    // Email kontrolü
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
         errors.push('Geçerli bir email adresi giriniz');
     }
     
-    // Mesaj kontrolü
     if (data.message.trim().length < 10) {
         errors.push('Mesaj en az 10 karakter olmalıdır');
     }
     
-    // Hata varsa göster
     if (errors.length > 0) {
         errors.forEach(error => showNotification(error, 'error'));
         return false;
@@ -76,21 +123,17 @@ function validateForm(data) {
     return true;
 }
 
-// Bildirim gösterme fonksiyonu
 function showNotification(message, type) {
     const notification = document.createElement('div');
     notification.className = `alert alert-${type === 'success' ? 'success' : 'danger'} notification`;
     notification.textContent = message;
     
-    // Bildirimi sayfaya ekle
     document.body.appendChild(notification);
     
-    // Animasyon ekle
     setTimeout(() => {
         notification.style.opacity = '1';
     }, 100);
     
-    // Bildirimi kaldır
     setTimeout(() => {
         notification.style.opacity = '0';
         setTimeout(() => {
@@ -99,7 +142,6 @@ function showNotification(message, type) {
     }, 3000);
 }
 
-// Scroll animasyonu için
 function animateOnScroll() {
     const cards = document.querySelectorAll('.card');
     
@@ -119,7 +161,6 @@ function animateOnScroll() {
     });
 }
 
-// Dinamik yıl güncelleme
 document.addEventListener('DOMContentLoaded', function() {
     const yearElement = document.querySelector('#current-year');
     if (yearElement) {
@@ -127,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Sayfa yüklenme performansı
 window.addEventListener('load', function() {
     const performanceData = {
         loadTime: window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart,
